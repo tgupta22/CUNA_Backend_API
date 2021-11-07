@@ -1,34 +1,3 @@
-// "use strict";
-// const express = require("express");
-// const app = express();
-
-// app
-//   .get("/", (req, res) => {
-//     console.log(req.url);
-//     res.send("<h1>Hello</h1>"); //determine the content-type automatically
-//   })
-//   .post("/", (req, res) => {})
-//   .patch("/", (req, res) => {})
-//   .put("/", (req, res) => {})
-//   .delete("/", (req, res) => {});
-
-// app.get("/old", (req, res) => {
-//   res.redirect(301, "/new");
-// });
-
-// app.get("/new", (req, res) => {
-//   res.send("<h2>NEW</h2>");
-// });
-
-// app.listen(3000, err => {
-//   if (err) {
-//     console.log("there was a problem", err);
-//     return;
-//   }
-//   console.log("listening on port 3000");
-// });
-
-// loading express in server.js
 const express = require('express');
 const app = express();
 // Used to accept the JSON body.
@@ -43,10 +12,6 @@ app.get('/', (req, res) => {
 
 app.listen(port, () => {
    console.log(`Server is up at ${port}`);
-
-//    app.get('/about', (req, res) => {
-//     res.send("Hello, AfterAcademy!, We are inside about page...");
-//  });
 
  app.post('/test', function (req, res) {
   res.send("POST request to '/' route");
@@ -68,21 +33,41 @@ app.post('/request', (req, res) => {
 // 2. POST callback:
 // The below request sends a string `STARTED` to indicate it's they received the request.
 
-app.post('request-started', (req, res) => {
+app.post('/request-started', (req, res) => {
   
-  // res.send(JSON.stringify(response));
   console.log('Got body:', req.body);
   res.sendStatus(204);
 });
 
 // 3. PUT callback:
+// The below request would PUT status updates to this callback URL, each which will have 
+//a json object with the keys of `status` and `detail`. The status will be one of `PROCESSED`,
+//`COMPLETED` or `ERROR`. The detail with be a text string.
+
 
 app.put('/put-callback', (req, res) => {
   
-  // res.send(JSON.stringify(response));
   console.log('Got body:', req.body);
   res.sendStatus(204);
 });
 
+// 4. GET status request.
+// Passing this url : localhost:3000/status?id=1&status=PROCESSED&detail=COMPLETED&body=Started on Postman to accomodate the unique ID,
+// status, detial and original body. If it is attahced to a database we can modify the url accordingly so it can take up less hard coded
+// values.
+
+  app.get('/status', function(req, res) {
+  const user_id = req.query.id;
+  const status = req.query.status;
+  const detail = req.query.detail;
+  const body = req.query.body;
+
+  res.send({
+    'user_id': user_id,
+    'status': status,
+    'detail': detail,
+    'body': body
+  });
+});
 
 });
