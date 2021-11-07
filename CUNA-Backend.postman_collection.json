@@ -1,0 +1,63 @@
+{
+	"info": {
+		"_postman_id": "7f81ac22-cadd-4037-9c63-46aaba0e04ab",
+		"name": "CUNA-Backend",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1. POST a request",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": null
+			},
+			"response": []
+		},
+		{
+			"name": "POST Callback",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": null
+			},
+			"response": []
+		},
+		{
+			"name": "PUT callback",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"status\": \"PROCESSED\",\r\n  \"detail\": \"COMPLETED\"\r\n}\r\n\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/put-callback",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"put-callback"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Status",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": null
+			},
+			"response": []
+		}
+	]
+}

@@ -3,19 +3,10 @@ const app = express();
 // Used to accept the JSON body.
 app.use(express.json());
 
-
 const port = 3000;
-
-app.get('/', (req, res) => {
-   res.send("Hello, AfterAcademy");
-});
 
 app.listen(port, () => {
    console.log(`Server is up at ${port}`);
-
- app.post('/test', function (req, res) {
-  res.send("POST request to '/' route");
-});
 
 // 1. POST a request.
 //The below post service accepts a JSON body consisting of a key, "body" which is a string. 
