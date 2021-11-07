@@ -52,25 +52,37 @@ app.listen(port, () => {
   res.send("POST request to '/' route");
 });
 
-// 1. Post a request.
+// 1. POST a request.
 //The below post service accepts a JSON body consisting of a key, "body" which is a string. 
-
-// app.post('/request', function (req, res) {
-//   if(req.body.email && req.body.password) {
-//      response = {
-//         email: req.body.email,
-//         password: req.body.password
-//      };
-//      res.send(JSON.stringify(response)); 
-//   }
-//   res.status(400);
-
-// });
+// The below request would also send 200 OK success when passed the request.
+// For testing if we pass the callback id (Any Number) it would accept that for now. 
+// If a database or a third party database is connected then we can definately send the desired data.
 
 app.post('/request', (req, res) => {
+  
   // res.send(JSON.stringify(response));
   console.log('Got body:', req.body);
   res.sendStatus(200);
 });
+
+// 2. POST callback:
+// The below request sends a string `STARTED` to indicate it's they received the request.
+
+app.post('request-started', (req, res) => {
+  
+  // res.send(JSON.stringify(response));
+  console.log('Got body:', req.body);
+  res.sendStatus(204);
+});
+
+// 3. PUT callback:
+
+app.put('/put-callback', (req, res) => {
+  
+  // res.send(JSON.stringify(response));
+  console.log('Got body:', req.body);
+  res.sendStatus(204);
+});
+
 
 });
